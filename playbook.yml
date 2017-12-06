@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+  become_user: root
+  vars:
+    # This must be set to work with Ubuntu 16.04 because Python2 is not
+    # installed by default.
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: update the apt cache for security patches
+      apt: update_cache=yes
+    - include: tasks/base.yml
+    - include: tasks/redis.yml
+    - include: tasks/nginx.yml
+    - include: tasks/countme.yml
+    

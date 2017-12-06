@@ -1,0 +1,28 @@
+---
+- name: install requirements
+  pip: 
+    requirements: /opt/company/countme/requirements.txt
+- name: create home for log files
+  file:
+    path: /var/log/countme
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0775
+- name: start the application
+  shell: nohup python3 /opt/company/countme/app.py >/var/log/countme/countme.log 2>&1 &
+- name: install countme server block 
+  template: 
+    src: ../templates/etc-nginx-sites-available-countme.j2
+    dest: /etc/nginx/sites-available/countme
+    owner: root
+    group: root
+- name: enable countme sever block
+  file:
+    src: /etc/nginx/sites-available/countme
+    dest: /etc/nginx/sites-enabled/countme
+    state: link
+- name: restart nginx so countme config is available
+  service:
+    name: nginx
+    state: restarted

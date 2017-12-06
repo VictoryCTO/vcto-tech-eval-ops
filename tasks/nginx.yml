@@ -1,0 +1,15 @@
+---
+- name: install nginx
+  apt: 
+    name=nginx 
+    state=present
+# Remove nginx install cruft
+- name: remove default server block enable link
+  file:
+    path=/etc/nginx/sites-enabled/default 
+    state=absent 
+- name: remove default server block
+  file: 
+    path=/etc/nginx/sites-available/default 
+    state=absent 
+    

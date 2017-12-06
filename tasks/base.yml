@@ -1,0 +1,19 @@
+---
+- name: install standard OS package set
+  apt: 
+    name={{ item }} 
+    state=present
+  with_items:
+    # Get system pip installed to manage system Python. This is _only_ for
+    # use by Ansible itself.
+    - python3-pip
+    # Install the 2.7 dev libraries so pip packages like pycrypto can 
+    # be installed
+    - python-dev
+- name: install system level python packages 
+  pip:
+    name={{ item }}
+    state=present
+  with_items:
+    # Install virtrualenv system-wide 
+    - virtualenv
