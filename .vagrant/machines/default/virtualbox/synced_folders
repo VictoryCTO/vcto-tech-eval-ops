@@ -1,1 +1,0 @@
-{"virtualbox":{"/opt/company":{"owner":"www-data","group":"www-data","guestpath":"/opt/company","hostpath":"/Users/boyd.hemphill/code/victory-cto/ops-technical-eval","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/boyd.hemphill/code/victory-cto/ops-technical-eval","disabled":false,"__vagrantfile":true}}}
